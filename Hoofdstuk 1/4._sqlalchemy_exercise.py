@@ -1,30 +1,37 @@
 ######################################
 # SQL Alchemy ORM: exercise
 # 0. Install PostgreSQL (including the client tool pgAdmin4) on your system (from https://www.postgresql.org/download/).
-# 1. Create (using pgAdmin4) a database xtreme and the table Employee in PostgreSQL for the fields EmployeeID, LastName, FirstName, Title, BirthDate and Salary.
-# 2. Migrate the selected fields from the table Employee from MS-SQL Server to PostgreSQL.
-# 3. Add a column Resume to the table Employee in PostgresSQL. Choose the appropriate data type for (long) textfields. 
-# 4. Import the Excel file "resume.xlsx" (with fields EmployeeID, Title and Resume) into the new table (source: https://resumegenius.com). 
-#    Overwrite the Title with the new value from the Excel for each EmployeeID; 
-######################################
-# TIP: see LinkedIn learning course "Advanced Python: working with databaseses", section "Pythonic Postgres Interactions with SQLALchemy ORM"
 
-# INITIALIZATION CODE
+# 1. Create (using pgAdmin4) a database xtreme and the table Employee in PostgreSQL for the fields EmployeeID, LastName, FirstName, Title, BirthDate and Salary.
+
+# 2. Migrate the selected fields from the table Employee from MS-SQL Server to PostgreSQL.
+
+# 3. Add a column Resume to the table Employee in PostgresSQL. Choose the appropriate data type for (long) textfields. 
+
+# 4. Import the Excel file "resume.xlsx" (with fields EmployeeID, Title and Resume) into the new table (source: https://resumegenius.com). 
+
+#    Overwrite the Title with the new value from the Excel for each EmployeeID; 
+
+
+# Imports
 
 from turtle import pd
 from sqlalchemy import create_engine, func, Table, MetaData, desc
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-
 from pandas import isna
 
-# initialization of MS SQL Server stuff
+# 1. Initialiseren van MS SQL Server.
 ms_engine = create_engine('mssql+pyodbc://LAPTOP-1R9KU2AQ\MSSQLSERVER01/xtreme?trusted_connection=yes&driver=ODBC+Driver+17+for+SQL+Server')
 ms_conn = ms_engine.connect()
-metadata = MetaData(ms_engine)  
+metadata = MetaData(ms_engine)
+
+# 2. Base-object aanmaken.
 ms_Base = declarative_base(ms_engine) # initialize Base class
 ms_Base.metadata.reflect(ms_engine)   # get metadata from database
 
+# Klasse aanmaken, 
+# --> Base-object voor MSQL meegeven.
 class MS_Employee(ms_Base):  # each table is a subclass from the Ba#se class
     __table__ = ms_Base.metadata.tables['Employee']
     
