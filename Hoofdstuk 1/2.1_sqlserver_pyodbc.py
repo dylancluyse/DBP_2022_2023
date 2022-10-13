@@ -52,14 +52,13 @@ conn.close()
 ######################################
 # PyODBC with stored procedure call.
 ######################################
-
-# Dit is een vorm van late binding. Er wordt eerst een SP aangesproken dat de data ophaalt.
+# Dit is een vorm van late binding. Er wordt eerst een SP of functie aangesproken dat data ophaalt.
 
 # 1. Verbinding aanmaken.
 conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER=LAPTOP-1R9KU2AQ\MSSQLSERVER01;DATABASE=xtreme;Trusted_Connection=yes;')
 
-# 2. Stored Procedure aanmaken. Doe dit in SQL Server Management Studio. Rechtermuisklik op de databank en kies voor een nieuwe query.
-#    OPM: Je krijgt gegarandeerd een foutmelding. Voeg de procedure toe in SQL Server Management Studio.
+# 2. Stored Procedure aanmaken. Doe dit in SQL Server Management Studio. Rechtermuisklik op de databank en kies voor een nieuwe query. Voer de query zeker uit.
+#    OPM: Je krijgt gegarandeerd een foutmelding zoals 'SP not found'. Voeg de procedure toe in SQL Server Management Studio.
 '''
 In database xtreme: 
     create procedure Emps30000
