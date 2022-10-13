@@ -3,54 +3,6 @@
 ######################################
 # See LinkedIn learning course "Advanced Python: working with databaseses"
 #
-######################################
-# PyODBC with plain SQL 
-######################################
-'''
-Check what ODBC drivers are installed on your PC by navigating to 
-'Control Panel -> Administrative Tools -> Data Sources (ODBC)' and clicking on the 'Drivers' tab. 
-You can also get to this ODBC Administrator window by running 'odbcad32.exe'. 
-Be aware there are separate 32-bit and 64-bit versions of the ODBC Administrator.
-'''
-# execute "pip install pyodbc" from the OS prompt
-import pyodbc  
-
-# connect to database using Windows authentication (Trusted_Connection=yes)
-conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER=LAPTOP-1R9KU2AQ\MSSQLSERVER01;DATABASE=xtreme;Trusted_Connection=yes;')
-
-query = "SELECT TOP 5 employeeid,lastname,firstname,salary FROM employee WHERE salary < 40000 order by salary desc"
-cursor = conn.cursor()
-cursor.execute(query)
-rows = cursor.fetchall()
-print('')
-print ('*** PyODBC with plain SQL ***')
-for row in rows:
-    print('ID = ' + str(row[0]) + ', '  + 'Name = ' + row[1] + ' ' + row[2] + ', salary = ' + str(row[3]))
-cursor.close()
-conn.close()
-    
-######################################
-# PyODBC with stored procedure call 
-######################################
-'''
-In database xtreme: 
-    create procedure Emps30000
-    as
-        SELECT TOP 5 employeeid,lastname,firstname,salary FROM employee WHERE salary < 40000 order by Salary desc
-'''
-
-
-conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER=LAPTOP-1R9KU2AQ\MSSQLSERVER01;DATABASE=xtreme;Trusted_Connection=yes;')
-query = "exec Emps30000"
-cursor = conn.cursor()
-cursor.execute(query)
-rows = cursor.fetchall()
-print('')
-print ('*** PyODBC with stored procedure ***')
-for row in rows:
-    print('ID = ' + str(row[0]) + ', '  + 'Name = ' + row[1] + ' ' + row[2] + ', salary = ' + str(row[3]))
-cursor.close()
-conn.close()
 
 ######################################
 # SQL Alchemy Core 
@@ -76,6 +28,8 @@ print ('*** SQL Alchemy Core ***')
 for row in rows:
     print('ID = ' + str(row[0]) + ', '  + 'Name = ' + row[1] + ' ' + row[2] + ', salary = ' + str(row[3]))
 conn.close()   
+
+
 
 ######################################
 # SQL Alchemy ORM 
