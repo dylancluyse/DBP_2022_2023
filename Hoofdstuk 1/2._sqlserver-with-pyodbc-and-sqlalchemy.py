@@ -41,7 +41,7 @@ In database xtreme:
 
 
 conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER=LAPTOP-1R9KU2AQ\MSSQLSERVER01;DATABASE=xtreme;Trusted_Connection=yes;')
-query = "exec Emps3s0000"
+query = "exec Emps30000"
 cursor = conn.cursor()
 cursor.execute(query)
 rows = cursor.fetchall()

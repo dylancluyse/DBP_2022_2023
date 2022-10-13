@@ -1,0 +1,4 @@
+Server=localhost\MSSQLSERVER01;Database=master;Trusted_Connection=True;
+
+user:postgres
+password:admin
