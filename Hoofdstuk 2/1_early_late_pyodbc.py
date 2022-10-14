@@ -47,7 +47,7 @@ def search_late(searchstring, limit):
 ######################################
 # Early binding --> stored procedure nodig.
 def search_early(searchstring, limit):
-    # 1. Je maakt de stored procedure 'candidates' aan. Je gebruikt altijd (), zelfs al heb je geen parameters. 
+    #    1. Je maakt de stored procedure 'candidates' aan. Je gebruikt altijd (), zelfs al heb je geen parameters. 
     #    Hier zijn de parameters dezelfde als wat we gaan meegeven aan de python-functie: de zoekstring én de limiet.
     #    Je geeft de tabel terug als output. Je gebruikt met voorkeur niet dezelfde veldnamen zoals in de tabel worden gebruikt.
     #    Je specifieert de programmeertaal die je gaat gebruiken. Binnen deze cursus is enkel 'plpsql' te kennen.

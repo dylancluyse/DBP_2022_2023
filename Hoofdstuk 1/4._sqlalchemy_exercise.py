@@ -1,15 +1,10 @@
 ######################################
 # SQL Alchemy ORM: exercise
 # 0. Install PostgreSQL (including the client tool pgAdmin4) on your system (from https://www.postgresql.org/download/).
-
 # 1. Create (using pgAdmin4) a database xtreme and the table Employee in PostgreSQL for the fields EmployeeID, LastName, FirstName, Title, BirthDate and Salary.
-
 # 2. Migrate the selected fields from the table Employee from MS-SQL Server to PostgreSQL.
-
 # 3. Add a column Resume to the table Employee in PostgresSQL. Choose the appropriate data type for (long) textfields. 
-
 # 4. Import the Excel file "resume.xlsx" (with fields EmployeeID, Title and Resume) into the new table (source: https://resumegenius.com). 
-
 #    Overwrite the Title with the new value from the Excel for each EmployeeID; 
 
 

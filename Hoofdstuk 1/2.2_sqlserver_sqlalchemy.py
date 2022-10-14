@@ -88,18 +88,18 @@ session = Session()
 
 # 4. Je bouwt de query op. Bij ORM moet je niet meer 'SELECT' en 'with_only' gebruiken. De query weet direct dat je te maken hebt met een select-statement. 
 #    Je spreekt de klasse 'Employee' aan en je haalt hieruit ieder veld op dat je nodig hebt.
-# Klasse spreek je aan, niet meer het object. 
+#    Klasse spreek je aan, niet meer het object. 
 rows = session.query(Employee.EmployeeID,Employee.LastName,Employee.FirstName,Employee.Salary) \
                 .where(Employee.Salary < 40000) \
                 .order_by(Employee.Salary.desc()) \
                 .limit(5)
 
-# 6. Om een mooi formaat te behouden maak je gebruik van foreach. 
+# 5. Om een mooi formaat te behouden maak je gebruik van foreach. 
 #    Iedere rij ga je gaan aflopen en daaruit haal je de velden op. De velden worden in dezelfde volgorde opgeslaan zoals je ze uit de select haalt.
 #    Voorbeeld: row[0] zal employeeID zijn, row[1] zal familienaam zijn, etc. 
 print ('*** SQL Alchemy ORM ***')
 for row in rows:
     print('ID = ' + str(row.EmployeeID) + ', '  + 'Name = ' + row.LastName + ' ' + row.FirstName + ', salary = ' + str(row.Salary))
 
-# 7. Verbinding afsluiten.
+# 6. Verbinding afsluiten.
 conn.close()
