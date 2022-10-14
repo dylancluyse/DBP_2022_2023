@@ -14,12 +14,13 @@ import pyodbc
 # Dit is een vorm van early binding. De SQL-query wordt direct op de databank uitgevoerd. Dit kan je zien omdat er (onder andere) geen stored procedures aangesproken..
 
 # 1. Verbinding aanmaken.
-conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER=LAPTOP-1R9KU2AQ\MSSQLSERVER01;DATABASE=xtreme;Trusted_Connection=yes;')
+conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost\MSSQLSERVER01;DATABASE=xtreme;Trusted_Connection=yes;')
 
 # 2. Query volgens early binding aanmaken.
 # We gebruiken voorlopig geen parameters. 
 # We slaan de query hier op als een string. 
 query = "SELECT TOP 5 employeeid,lastname,firstname,salary FROM employee WHERE salary < 40000 order by salary desc"
+
 
 # 3. Je maakt een cursor aan met het object dat de verbinding bijhoudt 'conn'. Dit sla je op onder een ander object.
 cursor = conn.cursor()
@@ -55,7 +56,7 @@ conn.close()
 # Dit is een vorm van late binding. Er wordt eerst een SP of functie aangesproken dat data ophaalt.
 
 # 1. Verbinding aanmaken.
-conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER=LAPTOP-1R9KU2AQ\MSSQLSERVER01;DATABASE=xtreme;Trusted_Connection=yes;')
+conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost\MSSQLSERVER01;DATABASE=xtreme;Trusted_Connection=yes;')
 
 # 2. Stored Procedure aanmaken. Doe dit in SQL Server Management Studio. Rechtermuisklik op de databank en kies voor een nieuwe query. Voer de query zeker uit.
 #    OPM: Je krijgt gegarandeerd een foutmelding zoals 'SP not found'. Voeg de procedure toe in SQL Server Management Studio.

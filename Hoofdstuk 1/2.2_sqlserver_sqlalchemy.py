@@ -88,6 +88,7 @@ session = Session()
 
 # 4. Je bouwt de query op. Bij ORM moet je niet meer 'SELECT' en 'with_only' gebruiken. De query weet direct dat je te maken hebt met een select-statement. 
 #    Je spreekt de klasse 'Employee' aan en je haalt hieruit ieder veld op dat je nodig hebt.
+# Klasse spreek je aan, niet meer het object. 
 rows = session.query(Employee.EmployeeID,Employee.LastName,Employee.FirstName,Employee.Salary) \
                 .where(Employee.Salary < 40000) \
                 .order_by(Employee.Salary.desc()) \
