@@ -16,10 +16,10 @@ print('(*’▽’)っ Initialization complete')
 
 
 ######################################
-# PyODBC --> Late Binding
+# PyODBC --> Early Binding
 ######################################
 # Late binding --> geen stored procedure nodig
-def search_late(searchstring, limit):
+def search_early(searchstring, limit):
 
     # 1. Je maakt de query aan door volgende zaken op te halen: naam + voornaam, titel en vervolgens twee bewerkingen rond FTS.
     #    ts_rank(ts_document, query) as rank --> je gaat op basis van de index gaan kijken hoeveel voorkomens een woord heeft.
@@ -46,7 +46,7 @@ def search_late(searchstring, limit):
 # PyODBC --> Early Binding
 ######################################
 # Early binding --> stored procedure nodig.
-def search_early(searchstring, limit):
+def search_late(searchstring, limit):
     #    1. Je maakt de stored procedure 'candidates' aan. Je gebruikt altijd (), zelfs al heb je geen parameters. 
     #    Hier zijn de parameters dezelfde als wat we gaan meegeven aan de python-functie: de zoekstring én de limiet.
     #    Je geeft de tabel terug als output. Je gebruikt met voorkeur niet dezelfde veldnamen zoals in de tabel worden gebruikt.
