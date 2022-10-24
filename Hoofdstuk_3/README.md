@@ -1,4 +1,4 @@
-**1. Hoe kunnen we volgende query sneller laten draaien?**
+# **1. Hoe kunnen we volgende query sneller laten draaien?**
 
 ```sql
 select u.id, u.displayname, u.Reputation, u.UpVotes 
@@ -18,7 +18,7 @@ create index user_idx on users (Reputation desc, UpVotes asc);
 create index user_idx on users (Reputation desc, UpVotes asc) include (displayname);
 ```
 
-**2. Toon alle posts van het jaar 2010 op een efficiente manier, toon het id, titel en de viewcount.**
+# **2. Toon alle posts van het jaar 2010 op een efficiente manier, toon het id, titel en de viewcount.**
 
 ```sql
 select id, title, viewcount 
@@ -35,7 +35,7 @@ alter table posts add YearCreation as (year(creationdate));
 select id, title, viewcount from posts where YearCreation = 2010;
 ```
 
-**3. Tel het aantal stemmen per jaar op een efficiënte manier. Wat is het nadeel hier? Kunnen we dit aanraden?**
+# **3. Tel het aantal stemmen per jaar op een efficiënte manier. Wat is het nadeel hier? Kunnen we dit aanraden?**
 
 ```sql
 select year(p.CreationDate) as year_of_post, count(v.id) as number_of_posts
@@ -47,7 +47,7 @@ order by year(p.CreationDate)
 
 *We hebben hier een heel lang execution plan. Dit omdat we gebruik maken van een geaggregeerde functie. We kunnen dit oplossen door een indexed view aan te maken van de gegevens.*
 
-3.1. *Maak eerste de materialized view:*
+## 3.1. *Maak eerste de materialized view:*
 
 ```sql
 -- eenmalig uitvoeren
@@ -63,7 +63,7 @@ select * from posts_per_year
 ```
 
 
-3.2. *Na het maken van de view moeten we een clustered index maken. Zonder de clustered index gaan we nog geen sneller systeem hebben. Als het nu sneller gaat, dan komt dit omdat het query execution plan gecached is. De clusterd index zal voor een aanzienlijk sneller systeem zorgen.*
+## 3.2. *Na het maken van de view moeten we een clustered index maken. Zonder de clustered index gaan we nog geen sneller systeem hebben. Als het nu sneller gaat, dan komt dit omdat het query execution plan gecached is. De clusterd index zal voor een aanzienlijk sneller systeem zorgen.*
 
 ```sql
 create clustered index ci_post_per_year
@@ -74,7 +74,7 @@ on CreationDate
 
 *Zoals hierboven gezegd, maak een nieuwe kolom aan dat gebaseerd is op een berekening met een functie.*
 
-**X - Materialized view of indexed views**
+# **X - Materialized view of indexed views**
 
 * Data vasthouden als een tabel. De berekeningen neem je weg van de query runtime. Een heel complexe view met heel complexe aggregaties (count, sum, etc.). Je houdt de resultaten van een select-statement bij.
 
@@ -84,7 +84,7 @@ on CreationDate
 
 * Virtuele tabel --> 'echte data' opgeslaan in een tabel.
 
-**X - Schema**
+# **X - Schema**
 
 * Container met alle objecten van een databank.
 
@@ -103,7 +103,7 @@ group by ..
 * Hierna ga je een clustered index uitvoeren op de view. 
 
 
-**5. Maak een rangschikking van alle gebruikers op basis van het aantal badges op de meest efficiënte manier.**
+# **5. Maak een rangschikking van alle gebruikers op basis van het aantal badges op de meest efficiënte manier.**
 
 Hoe je het niet moet doen:
 
@@ -114,9 +114,4 @@ group by u.Id, u.DisplayName
 ```
 
 Hier volg je best hetzelfde principe. Je slaat het aantal badges op per gebruiker.
-
-
-```sql
-
-```
 
